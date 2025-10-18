@@ -1,7 +1,7 @@
 # php-next-after
 
-![Packagist](https://img.shields.io/packagist/v/nsfisis/next-after)
-![GitHub Actions](https://img.shields.io/github/actions/workflow/status/nsfisis/php-next-after/test.yaml)
+[![Packagist](https://img.shields.io/packagist/v/nsfisis/next-after)](https://packagist.org/packages/nsfisis/next-after)
+[![Test](https://github.com/nsfisis/php-next-after/actions/workflows/test.yaml/badge.svg)](https://github.com/nsfisis/php-next-after/actions/workflows/test.yaml)
 
 A PHP library that provides a port of Java's `Math.nextAfter()` family of functions.
 
