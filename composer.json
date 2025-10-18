@@ -29,7 +29,7 @@
     "autoload": {
         "psr-4": {
             "Nsfisis\\NextAfter\\": "src/",
-            "Nsfisis\\NextAfter\\Tests\\": "tests/src/"
+            "Nsfisis\\NextAfter\\Tests\\": "tests/"
         }
     },
     "config": {

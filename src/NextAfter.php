@@ -11,7 +11,6 @@ use function pack;
 use function unpack;
 use const INF;
 use const NAN;
-use const PHP_FLOAT_MIN;
 use const PHP_INT_SIZE;
 
 final class NextAfter
@@ -46,7 +45,7 @@ final class NextAfter
             return INF;
         }
         if ($x === 0.0) {
-            return PHP_FLOAT_MIN;
+            return self::minValue();
         }
         $u = self::floatToInt($x);
         return $x > 0.0 ? self::intToFloat($u + 1) :
@@ -66,12 +65,20 @@ final class NextAfter
             return -INF;
         }
         if ($x === 0.0) {
-            return -PHP_FLOAT_MIN;
+            return -self::minValue();
         }
         $u = self::floatToInt($x);
         return $x > 0.0 ? self::intToFloat($u - 1) :
         self::intToFloat($u + 1);
 
+    }
+
+    /**
+     * @phpstan-pure
+     */
+    public static function minValue(): float
+    {
+        return self::intToFloat(1);
     }
 
     /**

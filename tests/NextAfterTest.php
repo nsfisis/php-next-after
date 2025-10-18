@@ -10,7 +10,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use const INF;
 use const NAN;
-use const PHP_FLOAT_MIN;
 
 #[CoversClass(NextAfter::class)]
 final class NextAfterTest extends TestCase
@@ -31,6 +30,11 @@ final class NextAfterTest extends TestCase
     public function testNextDown(float $expected, float $x): void
     {
         self::assertSameFloat($expected, NextAfter::nextDown($x));
+    }
+
+    public function testMinValue(): void
+    {
+        self::assertSameFloat(5.0e-324, NextAfter::minValue());
     }
 
     /**
@@ -56,12 +60,14 @@ final class NextAfterTest extends TestCase
         yield 'infinity to maximum finite value' => [PHP_FLOAT_MAX, INF, PHP_FLOAT_MAX];
         yield 'negative infinity to zero' => [-PHP_FLOAT_MAX, -INF, 0.0];
         yield 'negative infinity to negative maximum finite value' => [-PHP_FLOAT_MAX, -INF, -PHP_FLOAT_MAX];
-        yield 'zero to infinity' => [PHP_FLOAT_MIN, 0.0, INF];
-        yield 'zero to negative infinity' => [-PHP_FLOAT_MIN, 0.0, -INF];
-        yield 'negative zero to infinity' => [PHP_FLOAT_MIN, -0.0, INF];
-        yield 'negative zero to negative infinity' => [-PHP_FLOAT_MIN, -0.0, -INF];
+        yield 'zero to infinity' => [NextAfter::minValue(), 0.0, INF];
+        yield 'zero to negative infinity' => [-NextAfter::minValue(), 0.0, -INF];
+        yield 'negative zero to infinity' => [NextAfter::minValue(), -0.0, INF];
+        yield 'negative zero to negative infinity' => [-NextAfter::minValue(), -0.0, -INF];
         yield 'maximum finite value to inifinity' => [INF, PHP_FLOAT_MAX, INF];
         yield 'negative maximum finite value to negative inifinity' => [-INF, -PHP_FLOAT_MAX, -INF];
+        yield 'minimum positive value to zero' => [0.0, NextAfter::minValue(), 0.0];
+        yield 'minimum negative value to negative zero' => [-0.0, -NextAfter::minValue(), -0.0];
     }
 
     /**
@@ -72,10 +78,11 @@ final class NextAfterTest extends TestCase
         yield 'NaN' => [NAN, NAN];
         yield 'positive infinity' => [INF, INF];
         yield 'negative infinity' => [-PHP_FLOAT_MAX, -INF];
-        yield 'positive zero' => [PHP_FLOAT_MIN, 0.0];
-        yield 'negative zero' => [PHP_FLOAT_MIN, -0.0];
+        yield 'positive zero' => [NextAfter::minValue(), 0.0];
+        yield 'negative zero' => [NextAfter::minValue(), -0.0];
         yield 'positive value' => [1.0000000000000002, 1.0];
         yield 'negative value' => [-0.9999999999999999, -1.0];
+        yield 'minimum negative value' => [-0.0, -NextAfter::minValue()];
         yield 'maximum finite value' => [INF, PHP_FLOAT_MAX];
     }
 
@@ -87,9 +94,10 @@ final class NextAfterTest extends TestCase
         yield 'NaN' => [NAN, NAN];
         yield 'negative infinity' => [-INF, -INF];
         yield 'positive infinity' => [PHP_FLOAT_MAX, INF];
-        yield 'positive zero' => [-PHP_FLOAT_MIN, 0.0];
-        yield 'negative zero' => [-PHP_FLOAT_MIN, -0.0];
+        yield 'positive zero' => [-NextAfter::minValue(), 0.0];
+        yield 'negative zero' => [-NextAfter::minValue(), -0.0];
         yield 'positive value' => [0.9999999999999999, 1.0];
+        yield 'minimum positive value' => [0.0, NextAfter::minValue()];
         yield 'negative value' => [-1.0000000000000002, -1.0];
         yield 'negative maximum finite value' => [-INF, -PHP_FLOAT_MAX];
     }
