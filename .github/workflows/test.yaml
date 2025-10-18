@@ -1,0 +1,23 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: php-actions/composer@v6
+
+      - name: Run ECS
+        run: composer ecs
+
+      - name: Run PHPStan
+        run: composer phpstan
+
+      - name: Run PHPUnit
+        run: composer phpunit
