@@ -1,0 +1,47 @@
+{
+    "name": "nsfisis/next-after",
+    "description": "PHP port of java.lang.Math.nextAfter() family",
+    "version": "0.1.0",
+    "type": "library",
+    "keywords": ["float"],
+    "homepage": "https://github.com/nsfisis/php-next-after",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "nsfisis"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/nsfisis/php-next-after/issues"
+    },
+    "require": {
+        "php": ">=8.3"
+    },
+    "require-dev": {
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpunit/phpunit": "^12.4",
+        "symplify/easy-coding-standard": "^12.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nsfisis\\NextAfter\\": "src/",
+            "Nsfisis\\NextAfter\\Tests\\": "tests/src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "ecs": "ecs check",
+        "ecsfix": "ecs check --fix",
+        "phpstan": "phpstan analyze",
+        "phpunit": "phpunit"
+    }
+}
