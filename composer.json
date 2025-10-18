@@ -1,7 +1,7 @@
 {
     "name": "nsfisis/next-after",
     "description": "PHP port of java.lang.Math.nextAfter() family",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "type": "library",
     "keywords": ["float"],
     "homepage": "https://github.com/nsfisis/php-next-after",
