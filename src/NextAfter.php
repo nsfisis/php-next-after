@@ -20,6 +20,26 @@ final class NextAfter
     }
 
     /**
+     * Returns the floating-point number adjacent to $x in the direction of $y.
+     * If $x equals $y, returns $y.
+     *
+     * Special Cases:
+     *
+     * - If either argument is NaN, the result is NaN
+     * - If both arguments equal, $y is returned as it is
+     * - If $x is minValue() and $y is greater than $x, the result is positive zero
+     * - If $x is -minValue() and $y is less than $x, the result is negative zero
+     * - If $x is infinity and $y is not, PHP_FLOAT_MAX is returned
+     * - If $x is negative infinity and $y is not, -PHP_FLOAT_MAX is returned
+     * - If $x is PHP_FLOAT_MAX and $y is infinity, infinity is returned
+     * - If $x is -PHP_FLOAT_MAX and $y is negative infinity, negative infinity is returned
+     *
+     * @param float $x
+     *   Starting floating-point number
+     * @param float $y
+     *   Floating-point number indicating the direction
+     * @return float
+     *   The floating-point number adjacent to $x in the direction of $y
      * @phpstan-pure
      */
     public static function nextAfter(float $x, float $y): float
@@ -34,6 +54,22 @@ final class NextAfter
     }
 
     /**
+     * Returns the floating-point number adjacent to $x in the direction of positive infinity.
+     *
+     * This is semantically equivalent to nextAfter($x, INF).
+     *
+     * Special Cases:
+     *
+     * - If $x is NaN, the result is NaN
+     * - If $x is positive infinity, the result is positive infinity
+     * - If $x is zero, the result is minValue()
+     * - If $x is -minValue(), the result is negative zero
+     * - If $x is PHP_FLOAT_MAX, infinity is returned
+     *
+     * @param float $x
+     *   Starting floating-point number
+     * @return float
+     *   The floating-point number adjacent to $x in the direction of positive infinity
      * @phpstan-pure
      */
     public static function nextUp(float $x): float
@@ -54,6 +90,22 @@ final class NextAfter
     }
 
     /**
+     * Returns the floating-point number adjacent to $x in the direction of negative infinity.
+     *
+     * This is semantically equivalent to nextAfter($x, -INF).
+     *
+     * Special Cases:
+     *
+     * - If $x is NaN, the result is NaN
+     * - If $x is negative infinity, the result is negative infinity
+     * - If $x is zero, the result is -minValue()
+     * - If $x is minValue(), the result is positive zero
+     * - If $x is -PHP_FLOAT_MAX, negative infinity is returned
+     *
+     * @param float $x
+     *   Starting floating-point number
+     * @return float
+     *   The floating-point number adjacent to $x in the direction of negative infinity
      * @phpstan-pure
      */
     public static function nextDown(float $x): float
@@ -74,6 +126,13 @@ final class NextAfter
     }
 
     /**
+     * Returns the minimum representable non-zero floating-point number.
+     *
+     * Note that this is a subnormal number and is not the same as PHP_FLOAT_MIN,
+     * which is the smallest *normal* number.
+     *
+     * @return float
+     *   The minimum representable non-zero floating-point number
      * @phpstan-pure
      */
     public static function minValue(): float

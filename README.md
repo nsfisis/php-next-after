@@ -5,7 +5,7 @@ A PHP library that provides a port of Java's `Math.nextAfter()` family of functi
 
 ## Overview
 
-This library implements IEEE 754 floating-point manipulation functions that return the next representable floating-point value in a given direction:
+This library implements IEEE 754 floating-point manipulation functions that return the next representable floating-point number in a given direction:
 
 - `nextAfter($x, $y)` - Returns the adjacent float in the direction of another value
 - `nextUp($x)` - Returns the next float toward positive infinity
@@ -61,7 +61,7 @@ Returns the floating-point number adjacent to `$x` in the direction of `$y`. If 
 
 ### `nextUp(float $x): float`
 
-Returns the floating-point value adjacent to `$x` in the direction of positive infinity.
+Returns the floating-point number adjacent to `$x` in the direction of positive infinity.
 
 This is semantically equivalent to `nextAfter($x, INF)`.
 
@@ -75,7 +75,7 @@ This is semantically equivalent to `nextAfter($x, INF)`.
 
 ### `nextDown(float $x): float`
 
-Returns the floating-point value adjacent to `$x` in the direction of negative infinity.
+Returns the floating-point number adjacent to `$x` in the direction of negative infinity.
 
 This is semantically equivalent to `nextAfter($x, -INF)`.
 
