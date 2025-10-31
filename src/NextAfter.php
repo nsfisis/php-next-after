@@ -84,9 +84,7 @@ final class NextAfter
             return self::minValue();
         }
         $u = self::floatToInt($x);
-        return $x > 0.0 ? self::intToFloat($u + 1) :
-        self::intToFloat($u - 1);
-
+        return $x > 0.0 ? self::intToFloat($u + 1) : self::intToFloat($u - 1);
     }
 
     /**
@@ -120,9 +118,7 @@ final class NextAfter
             return -self::minValue();
         }
         $u = self::floatToInt($x);
-        return $x > 0.0 ? self::intToFloat($u - 1) :
-        self::intToFloat($u + 1);
-
+        return $x > 0.0 ? self::intToFloat($u - 1) : self::intToFloat($u + 1);
     }
 
     /**
