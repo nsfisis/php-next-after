@@ -17,7 +17,7 @@ This library implements IEEE 754 floating-point manipulation functions that retu
 
 ## Requirements
 
-- PHP 8.3 or higher
+- PHP 8.4 or higher
 - Little-endian 64-bit integers
 - IEEE 754 double-precision floats (binary64)
 
